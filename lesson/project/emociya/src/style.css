@@ -1,0 +1,337 @@
+:root {
+	--bg-color: #f0f0f0;
+	--text-color: #333;
+	--card-bg: #fff;
+	--button-bg: #4CAF50;
+	--button-text: white;
+}
+
+.dark-theme {
+	--bg-color: #121212;
+	--text-color: #fff;
+	--card-bg: #1e1e1e;
+	--button-bg: #64b5f6;
+	--button-text: #121212;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	transition: background-color 0.5s ease;
+}
+
+.container {
+	max-width: 600px;
+	margin: 20px auto;
+	padding: 20px;
+	background: var(--card-bg);
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.emotions {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+.emotion {
+	background: #f9f9f9;
+	border-radius: 8px;
+	padding: 15px;
+	text-align: center;
+}
+
+.controls {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 0;
+}
+
+button {
+	padding: 5px 10px;
+	font-size: 16px;
+	cursor: pointer;
+	background: var(--button-bg);
+	color: var(--button-text);
+	border: none;
+	border-radius: 4px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+	transform: scale(1.05);
+}
+
+button.decrease {
+	background: #f44336;
+}
+
+.level {
+	margin: 0 10px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.progress-bar {
+	position: relative;
+	height: 10px;
+	background: #ddd;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.progress-bar::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+#happy .progress-bar::before {
+	background: linear-gradient(to right, #ddd, #4CAF50);
+}
+
+#calm .progress-bar::before {
+	background: linear-gradient(to right, #ddd, #2196F3);
+}
+
+#energy .progress-bar::before {
+	background: linear-gradient(to right, #ddd, #FFC107);
+}
+
+#stress .progress-bar::before {
+	background: linear-gradient(to right, #ddd, #F44336);
+}
+
+.theme-toggle {
+	text-align: right;
+	margin-top: 10px;
+}
+
+.history {
+	margin-top: 20px;
+}
+
+.recommendations {
+	margin-top: 20px;
+}
+
+.diary {
+	margin-top: 20px;
+}
+
+textarea {
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+}
+
+#diaryEntries {
+	margin-top: 10px;
+}
+
+.diary-entry {
+	background: var(--card-bg);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.diary-entry .timestamp {
+	font-size: 12px;
+	color: #666;
+}
+
+.goals {
+	margin-top: 20px;
+}
+
+.goal-inputs {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+}
+
+.goal-inputs label {
+	font-weight: bold;
+}
+
+.goal-inputs input {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+#goalStatus {
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.notifications {
+	margin-top: 20px;
+}
+
+.notifications input {
+	width: 100px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.voice-control {
+	margin-top: 20px;
+}
+
+#voiceStatus {
+	margin-top: 10px;
+}
+
+.competitions {
+	margin-top: 20px;
+}
+
+#friendResults {
+	margin-top: 10px;
+}
+
+.friend-result {
+	background: var(--card-bg);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.analysis {
+	margin-top: 20px;
+}
+
+.analysis input {
+	width: 100px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+#report {
+	margin-top: 10px;
+	background: var(--card-bg);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.detailed-analysis {
+	margin-top: 20px;
+}
+
+.export {
+	margin-top: 20px;
+}
+
+.import {
+	margin-top: 20px;
+}
+
+.push-notifications {
+	margin-top: 20px;
+}
+
+.game {
+	margin-top: 20px;
+}
+
+#gameArea {
+	width: 300px;
+	height: 300px;
+	border: 2px solid #4CAF50;
+	position: relative;
+	margin: 10px auto;
+}
+
+.smiley {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	background: #FFD600;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	cursor: pointer;
+	transition: transform 0.3s;
+}
+
+.smiley:hover {
+	transform: scale(1.1);
+}
+
+/* Анимация появления элементов */
+.fade-in {
+	animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+/* Стили для кастомных уведомлений */
+.notification-default {
+	background: #f0f0f0;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 15px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.notification-minimal {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	padding: 10px;
+	font-size: 14px;
+}
+
+.notification-fun {
+	background: #FFD600;
+	border: 2px dashed #4CAF50;
+	border-radius: 10px;
+	padding: 20px;
+	font-family: 'Comic Sans MS', cursive;
+	text-align: center;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+	.container {
+			padding: 10px;
+	}
+	.emotions {
+			grid-template-columns: 1fr;
+	}
+	.goal-inputs {
+			grid-template-columns: 1fr;
+	}
+	#gameArea {
+			width: 90vw;
+			height: 90vw;
+			max-width: 300px;
+			max-height: 300px;
+	}
+}
