@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Эмоциональный счётчик 2.0</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#4CAF50"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Эмоциональный счётчик 2.0</h1>
+        
+        <!-- Переключение темы -->
+        <div class="theme-toggle">
+            <button id="toggleTheme">Переключить тему</button>
+        </div>
+        
+        <!-- Шкалы эмоций -->
+        <div class="emotions">
+            <div class="emotion" id="happy">
+                <h2>Счастье</h2>
+                <div class="controls">
+                    <button class="decrease">-</button>
+                    <span class="level">0</span>
+                    <button class="increase">+</button>
+                </div>
+                <div class="progress-bar"></div>
+            </div>
+            <div class="emotion" id="calm">
+                <h2>Спокойствие</h2>
+                <div class="controls">
+                    <button class="decrease">-</button>
+                    <span class="level">0</span>
+                    <button class="increase">+</button>
+                </div>
+                <div class="progress-bar"></div>
+            </div>
+            <div class="emotion" id="energy">
+                <h2>Энергия</h2>
+                <div class="controls">
+                    <button class="decrease">-</button>
+                    <span class="level">0</span>
+                    <button class="increase">+</button>
+                </div>
+                <div class="progress-bar"></div>
+            </div>
+            <div class="emotion" id="stress">
+                <h2>Стресс</h2>
+                <div class="controls">
+                    <button class="decrease">-</button>
+                    <span class="level">0</span>
+                    <button class="increase">+</button>
+                </div>
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+        
+        <button id="reset">Сбросить</button>
+        
+        <!-- История и график -->
+        <div class="history">
+            <button id="showHistory">Показать историю</button>
+            <canvas id="emotionChart" style="display: none;"></canvas>
+        </div>
+        
+        <!-- Рекомендации -->
+        <div class="recommendations">
+            <h3>Рекомендации</h3>
+            <p id="recommendationText"></p>
+        </div>
+        
+        <!-- Дневник эмоций -->
+        <div class="diary">
+            <h3>Дневник эмоций</h3>
+            <textarea id="diaryEntry" placeholder="Введите заметку..."></textarea>
+            <button id="saveDiary">Сохранить заметку</button>
+            <div id="diaryEntries"></div>
+        </div>
+        
+        <!-- Цели -->
+        <div class="goals">
+            <h3>Цели</h3>
+            <div class="goal-inputs">
+                <label for="happyGoal">Счастье:</label>
+                <input type="number" id="happyGoal" min="0" max="10" placeholder="Цель">
+                <label for="calmGoal">Спокойствие:</label>
+                <input type="number" id="calmGoal" min="0" max="10" placeholder="Цель">
+                <label for="energyGoal">Энергия:</label>
+                <input type="number" id="energyGoal" min="0" max="10" placeholder="Цель">
+                <label for="stressGoal">Стресс:</label>
+                <input type="number" id="stressGoal" min="0" max="10" placeholder="Цель">
+            </div>
+            <button id="setGoals">Установить цели</button>
+            <p id="goalStatus"></p>
+        </div>
+        
+        <!-- Уведомления -->
+        <div class="notifications">
+            <h3>Уведомления</h3>
+            <label for="notificationInterval">Интервал (минуты):</label>
+            <input type="number" id="notificationInterval" min="1" placeholder="Введите интервал">
+            <label for="notificationStyle">Стиль уведомлений:</label>
+            <select id="notificationStyle">
+                <option value="default">Стандартный</option>
+                <option value="minimal">Минималистичный</option>
+                <option value="fun">Весёлый</option>
+            </select>
+            <button id="setNotification">Установить уведомления</button>
+        </div>
+        
+        <!-- Голосовое управление -->
+        <div class="voice-control">
+            <h3>Голосовое управление</h3>
+            <button id="startVoice">Начать голосовое управление</button>
+            <p id="voiceStatus"></p>
+        </div>
+        
+        <!-- Соревнования -->
+        <div class="competitions">
+            <h3>Соревнования</h3>
+            <button id="shareResults">Поделиться результатами</button>
+            <div id="friendResults"></div>
+            <p>Обновление в реальном времени: <span id="realTimeStatus">Отключено</span></p>
+            <button id="toggleRealTime">Включить реальное время</button>
+        </div>
+        
+        <!-- Анализ данных -->
+        <div class="analysis">
+            <h3>Анализ данных</h3>
+            <label for="analysisPeriod">Период (дни):</label>
+            <input type="number" id="analysisPeriod" min="1" placeholder="Введите период">
+            <button id="generateReport">Сгенерировать отчёт</button>
+            <div id="report"></div>
+        </div>
+        
+        <!-- Детализированный анализ -->
+        <div class="detailed-analysis">
+            <h3>Детализированный анализ</h3>
+            <button id="generateDetailedReport">Сгенерировать детализированный отчёт</button>
+            <canvas id="detailedChart" style="display: none;"></canvas>
+        </div>
+        
+        <!-- Экспорт/Импорт данных -->
+        <div class="export">
+            <h3>Экспорт данных</h3>
+            <button id="exportData">Экспортировать данные</button>
+        </div>
+        <div class="import">
+            <h3>Импорт данных</h3>
+            <input type="file" id="importFile" accept=".json">
+        </div>
+        
+        <!-- Push-уведомления -->
+        <div class="push-notifications">
+            <h3>Push-уведомления</h3>
+            <button id="subscribePush">Подписаться на push-уведомления</button>
+        </div>
+        
+        <!-- Мини-игра -->
+        <div class="game">
+            <h3>Мини-игра: Собери смайлики</h3>
+            <div id="gameArea"></div>
+            <p>Счёт: <span id="gameScore">0</span></p>
+            <label for="gameDifficulty">Сложность:</label>
+            <select id="gameDifficulty">
+                <option value="easy">Лёгкий</option>
+                <option value="medium">Средний</option>
+                <option value="hard">Сложный</option>
+            </select>
+            <button id="startGame">Начать игру</button>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
